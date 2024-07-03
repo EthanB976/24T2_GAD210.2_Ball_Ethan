@@ -28,10 +28,22 @@ public class MathManager : MonoBehaviour
     private bool isMulti = false;
     private bool isDiv = false;
 
+    //this checks the input otherwise answervalue will always  = 0 which is wrong
+    private string input;
+
+    Timer timer;
+
     // Start is called before that first frame update
     private void Start()
     {
-        
+        timer = GetComponent<Timer>();
+        AskQuestion();
+    }
+
+   
+   public void AskQuestion()
+    {
+
         firstValue = Random.Range(lowFirstValue, highFirstValue);
         secondValue = Random.Range(lowSecondValue, highSecondValue);
         int i = Random.Range(1, 5);
@@ -55,7 +67,7 @@ public class MathManager : MonoBehaviour
             finalValue = firstValue * secondValue;
             Debug.Log("Multipling");
         }
-        else if(i == 4)
+        else if (i == 4)
         {
             isDiv = true;
             finalValue = firstValue / secondValue;
@@ -86,14 +98,16 @@ public class MathManager : MonoBehaviour
         {
             gameText.text = firstValue + "/" + secondValue.ToString();
         }
-    }
 
-   
-    //this checks the input otherwise answervalue will always  = 0 which is wrong
-    private string input;
+        
+    }
 
     public void EndAnswer(string answerString)
     {
+        
+        
+        Debug.Log("Button Pressed!!!");
+
         input = answerString;
         int answerValue;
         int.TryParse(input, out answerValue);
@@ -106,5 +120,15 @@ public class MathManager : MonoBehaviour
             Debug.Log("false!!");
         }
         //this lets us know the input is working and functioning correctly
+
+        AskQuestion();
+        
+        timer.ResetTimer();
+
+
     }
+
+
+    
+
 }
