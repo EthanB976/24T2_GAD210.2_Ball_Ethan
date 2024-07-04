@@ -18,6 +18,7 @@ public class MathManager : MonoBehaviour
 
     //the problem text
     [SerializeField] public TextMeshProUGUI gameText;
+    [SerializeField] private TextMeshProUGUI correctText;
 
     //final answer value
     public int finalValue;
@@ -114,10 +115,12 @@ public class MathManager : MonoBehaviour
         if (answerValue == finalValue)
         {
             Debug.Log("correct!!");
+            correctText.text = "Correct!!";
         }
         else
         {
             Debug.Log("false!!");
+            correctText.text = "False!!";
         }
         //this lets us know the input is working and functioning correctly
 
